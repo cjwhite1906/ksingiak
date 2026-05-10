@@ -5,7 +5,7 @@
 # ksingiak: a philosophical language project
 
 <p align="center">
-| <a href="https://cjwhite1906.github.io/ksingiak/public-repo/wiki/ksingiak-peoples-republic.html"><b>Wiki</b></a> |
+| <a href="https://cjwhite1906.github.io/ksingiak/wiki/ksingiak-peoples-republic.html"><b>Wiki</b></a> |
 
 ## Overview
 

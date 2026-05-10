@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ksingiak People's Republic – Wikischmedia</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #202122;
+      background: #fff;
+    }
+
+    /* ── Top bar ── */
+    #top-bar {
+      background: #fff;
+      border-bottom: 1px solid #a7d7f9;
+      padding: 4px 0;
+    }
+    #top-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #54595d;
+      font-family: sans-serif;
+    }
+    #top-bar a { color: #3366cc; text-decoration: none; margin: 0 4px; }
+    #top-bar a:hover { text-decoration: underline; }
+
+    /* ── Header / wordmark ── */
+    #header {
+      border-bottom: 1px solid #a2a9b1;
+      padding: 8px 0;
+      background: #fff;
+    }
+    #header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    #wordmark {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    #wordmark .wiki-title {
+      font-family: 'Linux Libertine', Georgia, serif;
+      font-size: 22px;
+      color: #000;
+    }
+    #wordmark .wiki-sub {
+      font-size: 11px;
+      color: #54595d;
+      font-family: sans-serif;
+      font-style: italic;
+    }
+    #wiki-logo {
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      border: 1px solid #a2a9b1;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      background: #f8f9fa;
+      flex-shrink: 0;
+    }
+    #search-bar {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      border: 1px solid #a2a9b1;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    #search-bar input {
+      border: none;
+      outline: none;
+      padding: 5px 10px;
+      font-size: 13px;
+      width: 240px;
+      font-family: sans-serif;
+      color: #202122;
+    }
+    #search-bar button {
+      border: none;
+      background: #f8f9fa;
+      border-left: 1px solid #a2a9b1;
+      padding: 5px 10px;
+      cursor: pointer;
+      color: #54595d;
+    }
+
+    /* ── Nav tabs ── */
+    #nav-tabs {
+      background: #fff;
+      border-bottom: 1px solid #a2a9b1;
+    }
+    #nav-tabs-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      gap: 0;
+    }
+    .nav-tab {
+      padding: 8px 14px;
+      font-size: 12.5px;
+      font-family: sans-serif;
+      color: #3366cc;
+      border: 1px solid transparent;
+      border-bottom: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      top: 1px;
+    }
+    .nav-tab.active {
+      background: #fff;
+      border-color: #a2a9b1;
+      color: #202122;
+      font-weight: bold;
+    }
+    .nav-tab:not(.active):hover { text-decoration: underline; }
+
+    /* ── Page layout ── */
+    #page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    /* ── Left sidebar ── */
+    #sidebar {
+      width: 160px;
+      flex-shrink: 0;
+      font-family: sans-serif;
+      font-size: 12.5px;
+    }
+    .sidebar-section { margin-bottom: 16px; }
+    .sidebar-title {
+      font-weight: bold;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #54595d;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+    .sidebar-link {
+      display: block;
+      color: #3366cc;
+      text-decoration: none;
+      padding: 2px 0;
+      line-height: 1.4;
+    }
+    .sidebar-link:hover { text-decoration: underline; }
+
+    /* ── Main content ── */
+    #content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    h1.page-title {
+      font-family: 'Linux Libertine', Georgia, serif;
+      font-size: 28px;
+      font-weight: normal;
+      border-bottom: 1px solid #a2a9b1;
+      padding-bottom: 4px;
+      margin-bottom: 14px;
+      color: #000;
+    }
+
+    /* ── Infobox ── */
+    .infobox {
+      float: right;
+      clear: right;
+      margin: 0 0 16px 24px;
+      border: 1px solid #a2a9b1;
+      background: #f8f9fa;
+      font-size: 12.5px;
+      font-family: sans-serif;
+      width: 280px;
+      line-height: 1.5;
+    }
+    .infobox-title {
+      background: #cee0f2;
+      text-align: center;
+      font-weight: bold;
+      padding: 6px 8px;
+      font-size: 13px;
+      border-bottom: 1px solid #a2a9b1;
+    }
+    .infobox-flag {
+      text-align: center;
+      padding: 12px 8px 8px;
+      border-bottom: 1px solid #a2a9b1;
+    }
+    /* .flag-placeholder {
+      width: 180px;
+      height: 108px;
+      border: 2px dashed #a2a9b1;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #72777d;
+      font-size: 11.5px;
+      text-align: center;
+      background: #fff;
+      line-height: 1.4;
+      padding: 8px;
+    } */
+    .infobox-flag-caption {
+      font-size: 11px;
+      color: #54595d;
+      margin-top: 5px;
+      font-style: italic;
+    }
+    .infobox table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .infobox td {
+      padding: 4px 8px;
+      vertical-align: top;
+      border-top: 1px solid #eaecf0;
+    }
+    .infobox td:first-child {
+      font-weight: bold;
+      color: #54595d;
+      width: 45%;
+      white-space: nowrap;
+    }
+    .infobox td:last-child { color: #202122; }
+    .infobox-section-header td {
+      background: #dce9f5;
+      font-weight: bold;
+      text-align: center;
+      font-size: 11.5px;
+      padding: 3px 8px;
+      border-top: 1px solid #a2a9b1;
+    }
+
+    /* ── Article body ── */
+    .article-body p {
+      margin-bottom: 14px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: #202122;
+    }
+    .article-body a { color: #3366cc; text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+
+    /* ── TOC ── */
+    #toc {
+      border: 1px solid #a2a9b1;
+      background: #f8f9fa;
+      display: inline-block;
+      padding: 12px 20px 12px 14px;
+      margin: 0 0 20px 0;
+      font-family: sans-serif;
+      font-size: 12.5px;
+      min-width: 200px;
+    }
+    #toc-title {
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+    #toc ol { padding-left: 20px; }
+    #toc li { margin: 3px 0; }
+    #toc a { color: #3366cc; text-decoration: none; }
+    #toc a:hover { text-decoration: underline; }
+
+    /* ── Section headers ── */
+    .article-body h2 {
+      font-family: 'Linux Libertine', Georgia, serif;
+      font-size: 22px;
+      font-weight: normal;
+      border-bottom: 1px solid #a2a9b1;
+      padding-bottom: 3px;
+      margin: 24px 0 10px;
+      color: #000;
+    }
+    .article-body h3 {
+      font-family: sans-serif;
+      font-size: 15px;
+      font-weight: bold;
+      margin: 18px 0 8px;
+      color: #000;
+    }
+
+    /* ── Notice box ── */
+    .notice-box {
+      border: 1px solid #a2a9b1;
+      background: #eaf3fb;
+      padding: 8px 12px;
+      font-family: sans-serif;
+      font-size: 12.5px;
+      margin-bottom: 16px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: #202122;
+    }
+    .notice-box i { color: #3366cc; margin-top: 2px; flex-shrink: 0; }
+
+    /* ── Footer ── */
+    #footer {
+      border-top: 1px solid #a2a9b1;
+      padding: 16px 20px;
+      font-family: sans-serif;
+      font-size: 12px;
+      color: #54595d;
+      text-align: center;
+      margin-top: 40px;
+      background: #f8f9fa;
+    }
+    #footer a { color: #3366cc; text-decoration: none; }
+    #footer a:hover { text-decoration: underline; }
+
+    /* ── Stub box ── */
+    .stub-box {
+      clear: both;
+      border: 1px solid #a2a9b1;
+      background: #f8f9fa;
+      padding: 7px 12px;
+      font-family: sans-serif;
+      font-size: 12.5px;
+      color: #202122;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .stub-box a { color: #3366cc; text-decoration: none; }
+    .stub-box a:hover { text-decoration: underline; }
+
+    /* Clearfix */
+    .clearfix::after { content: ''; display: table; clear: both; }
+
+    @media (max-width: 720px) {
+      #sidebar { display: none; }
+      .infobox { float: none; width: 100%; margin: 0 0 16px 0; }
+      #search-bar { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div id="top-bar">
+  <div id="top-bar-inner">
+    <span>
+      <a href="#">Create account</a> &nbsp;·&nbsp;
+      <a href="#">Log in</a>
+    </span>
+    <span>
+      <a href="#">Contributions</a> &nbsp;·&nbsp;
+      <a href="#">Talk</a>
+    </span>
+  </div>
+</div>
+
+<!-- Header -->
+<div id="header">
+  <div id="header-inner">
+    <div id="wiki-logo">🌐</div>
+    <div id="wordmark">
+      <span class="wiki-title">Wikischmedia</span>
+      <span class="wiki-sub">The Bargain-Value Encyclopedia</span>
+    </div>
+    <div id="search-bar">
+      <input type="text" placeholder="Search Wikischmedia" />
+      <button><i class="fa fa-search"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- Nav tabs -->
+<div id="nav-tabs">
+  <div id="nav-tabs-inner">
+    <a class="nav-tab active" href="#">Article</a>
+    <a class="nav-tab" href="#">Talk</a>
+    <a class="nav-tab" href="#">Read</a>
+    <a class="nav-tab" href="#">Edit</a>
+    <a class="nav-tab" href="#">View history</a>
+    <a class="nav-tab" href="#" style="margin-left:auto;">Tools</a>
+  </div>
+</div>
+
+<!-- Page body -->
+<div id="page">
+
+  <!-- Left sidebar -->
+  <div id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">Navigation</div>
+      <a class="sidebar-link" href="#">Main page</a>
+      <a class="sidebar-link" href="#">Contents</a>
+      <a class="sidebar-link" href="#">Current events</a>
+      <a class="sidebar-link" href="#">Random article</a>
+      <a class="sidebar-link" href="#">About Wikischmedia</a>
+      <a class="sidebar-link" href="#">Contact us</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Contribute</div>
+      <a class="sidebar-link" href="#">Help</a>
+      <a class="sidebar-link" href="#">Learn to edit</a>
+      <a class="sidebar-link" href="#">Community portal</a>
+      <a class="sidebar-link" href="#">Recent changes</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Languages</div>
+      <a class="sidebar-link" href="#">Ksingiak</a>
+      <a class="sidebar-link" href="#">Русский</a>
+      <a class="sidebar-link" href="#">Suomi</a>
+      <a class="sidebar-link" href="#">Norsk</a>
+      <a class="sidebar-link" href="#">Svenska</a>
+      <a class="sidebar-link" href="#">日本語</a>
+      <a class="sidebar-link" href="#">+ 34 more</a>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div id="content">
+
+    <h1 class="page-title">Ksingiak People's Republic</h1>
+
+    <div class="notice-box">
+      <i class="fa fa-info-circle"></i>
+      <span>This article is about the sovereign state. For the Ksingiak language, see <a href="#">Ksingiak language</a>. For the pre-colonial peoples, see <a href="#">Ksingiak peoples</a>.</span>
+    </div>
+
+    <div class="article-body clearfix">
+
+      <!-- Infobox -->
+      <div class="infobox">
+        <div class="infobox-title">Ksingiak People's Republic<br>
+          <span style="font-weight:normal; font-size:11px; font-style:italic;"><mark>#TODO: Svajalung Ksingiak</mark></span>
+        </div>
+
+        <div class="infobox-flag">
+          <div>
+            
+            <span style="font-size:10px;"><img src="../media/flag-draft-01.png" width="200" height="100"></img></span>
+          </div>
+          <div class="infobox-flag-caption">Flag of the Ksingiak People's Republic</div>
+        </div>
+
+        <table>
+          <tr class="infobox-section-header"><td colspan="2">Basic information</td></tr>
+          <tr><td>Capital</td><td><a href="#"><mark>#TODO: Ksingiak City</mark></a></td></tr>
+          <tr><td>Official language</td><td><a href="#">Ksingiak</a></td></tr>
+          <tr><td>Recognised languages</td><td>Multiple; see <a href="#">Languages of the KPR</a></td></tr>
+          <tr><td>Demonym</td><td>Ksingiak</td></tr>
+
+          <tr class="infobox-section-header"><td colspan="2">Government</td></tr>
+          <tr><td>Type</td><td>Plurinational People's Republic</td></tr>
+          <tr><td>Governing document</td><td><a href="#"><mark>#TODO: Walla Walla</mark> Constitution</a> (1934)</td></tr>
+          <tr><td>Ideology</td><td>Marxism-Leninism, plurinationalism, internationalism</td></tr>
+
+          <tr class="infobox-section-header"><td colspan="2">History</td></tr>
+          <tr><td>Revolution</td><td><a href="#">Ksingiak Progressive Popular Revolution</a></td></tr>
+          <tr><td>Founded</td><td>1931</td></tr>
+          <tr><td>Constitution</td><td>1934</td></tr>
+
+          <tr class="infobox-section-header"><td colspan="2">Geography</td></tr>
+          <tr><td>Region</td><td>Subarctic northern hemisphere</td></tr>
+          <tr><td>Borders</td><td>Scandinavian, Russian, and Pacific Arctic frontiers</td></tr>
+
+          <tr class="infobox-section-header"><td colspan="2">Economy</td></tr>
+          <tr><td>Model</td><td>Nordic-influenced Social Democracy</td></tr>
+          <tr><td>Land ownership</td><td>Collective stewardship</td></tr>
+        </table>
+      </div><!-- /infobox -->
+
+      <!-- Lead paragraph -->
+      <p>
+        The <b>Ksingiak People's Republic</b> (<a href="#">Ksingiak</a>: <i><mark>#TODO: Svajalung Ksingiak</mark></i>) is a sovereign socialist state located in the subarctic region of the northern hemisphere, occupying a remote territorial expanse at the convergence of the Scandinavian, Russian, and Pacific Arctic frontiers. Founded in 1931 following a successful national liberation struggle against colonial occupation, the republic is a <a href="#">plurinational</a> union of diverse indigenous peoples bound together by a shared history of resistance, a common civic identity, and the <a href="#">Ksingiak language</a>, which has historically served as a lingua franca for intertribal commerce, and remains to this day as the republic's official tongue of governance, education, and inter-communal life while coexisting alongside the protected languages and cultural traditions of its constituent nations.
+      </p>
+      <p>
+        The republic traces its ideological origins to a cohort of indigenous intellectuals drawn from several of these peoples, who had been pursuing advanced academic study in Europe during the early twentieth century, where they engaged directly with the logical positivist tradition of the <a href="#">Vienna Circle</a> before breaking decisively with its rigid apolitical scientism. Influenced by the <a href="#">dialectical materialism</a> of <a href="#">Marx</a> and <a href="#">Lenin</a>, these scholar-revolutionaries — most prominently the philosopher and statesman <b><a href="#"><mark>#TODO: Big Meech</mark></a></b> and the logician <b><a href="#"><mark>#TODO: Larry Hoover</mark></a></b> — returned to their homeland to lead the <a href="#"><i>Ksingiak Progressive Popular Revolution</i></a>, synthesizing a uniquely Ksingiak cultural experience revolutionary philosophy that fused rigorous <a href="#">formal logic</a> with the materialist analysis of colonial contradiction.
+      </p>
+      <p>
+        Drawing considerably from the cooperative economic structures of <a href="#">Nordic-style social democracy</a>, the republic instituted robust systems of public welfare, collective land stewardship, and democratic worker governance, while embedding the recognition of its many constituent peoples into the very architecture of the state through a system of <a href="#">autonomous national people's councils</a>, proportional cultural representation, and guaranteed linguistic rights. Today the Ksingiak People's Republic stands as one of the most prominent voices in the global struggle against economic exploitation and imperial domination, regarded internationally as a living experiment in the possibility of multiethnic, plurinational democracy and a model of solidarity both within its borders and across them. The republic is governed under the <a href="#"><mark>#TODO: Walla Walla</mark> Constitution</a> of 1934, named in honour of <mark>#TODO: Walla Walla</mark>, who died in the final campaign of the liberation war and is considered the country's foremost <a href="#">national martyr</a>.
+      </p>
+
+      <!-- Stub notice -->
+      <div class="stub-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/24701-nature-natural-beauty.jpg/20px-24701-nature-natural-beauty.jpg" alt="" style="display:none;"/>
+        <span>🌍</span>
+        <span>This article about a <a href="#">sovereign state</a> is a <a href="#">stub</a>. You can help Wikischmedia by <a href="#">expanding it</a>.</span>
+      </div>
+
+    </div><!-- /article-body -->
+  </div><!-- /content -->
+</div><!-- /page -->
+
+<!-- Footer -->
+<div id="footer">
+  <p>Copyright © 2026 Cameron White</p>
+  <p style="margin-top:6px;">
+    <a href="#">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="#">About Wikischmedia</a> &nbsp;·&nbsp;
+    <a href="#">Disclaimers</a> &nbsp;·&nbsp;
+    <a href="#">Contact Wikischmedia</a> &nbsp;·&nbsp;
+    <a href="#">Mobile view</a>
+  </p>
+</div>
+
+</body>
+</html>
